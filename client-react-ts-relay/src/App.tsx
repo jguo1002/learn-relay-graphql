@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 // import { useLazyLoadQuery } from "react-relay";
 import {graphql} from "babel-plugin-relay/macro";
 import { RelayEnvironmentProvider, usePreloadedQuery, loadQuery } from "react-relay";
-import RelayEnvironment from "./RelayEnv";
+import RelayEnvironment from "./components/RelayEnv";
 import "./App.css";
 
 const CharacterQuery = graphql`
