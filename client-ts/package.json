@@ -23,7 +23,7 @@
     "relay": "yarn run relay-compiler",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "get-graphql-schema": "get-graphql-schema https://api.spacex.land/graphql > schema.graphql --graphql"
+    "get-graphql-schema": "get-graphql-schema https://rickandmortyapi.com/graphql > schema.graphql --graphql"
   },
   "relay": {
     "src": "./src/",
