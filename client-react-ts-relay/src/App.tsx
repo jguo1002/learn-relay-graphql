@@ -1,51 +1,29 @@
 import React, { Suspense } from "react";
-// import { useLazyLoadQuery } from "react-relay";
-import {graphql} from "babel-plugin-relay/macro";
-import { RelayEnvironmentProvider, usePreloadedQuery, loadQuery } from "react-relay";
+import { RelayEnvironmentProvider } from "react-relay";
 import RelayEnvironment from "./components/RelayEnv";
 import "./App.css";
-
-const CharacterQuery = graphql`
-  query AppCharacterQuery($characterId: ID!) {
-    character(id: $characterId) {
-      created
-      id
-      gender
-      image
-      name
-      species
-      status
-      type
-    }
-  }
-`
-
-const preloadedQuery = loadQuery(RelayEnvironment, CharacterQuery, {
-  /* query variables */
-  "characterId": 1
-});
-
+import CharacterList from "./components/CharacterList";
+import Character from "./components/Character";
+import { Routes, Route } from "react-router-dom";
 
 function App(props: any) {
-  const data: any = usePreloadedQuery(CharacterQuery, props.preloadedQuery);
-  console.log(data);
-
-  return <div className="App">
-    <header className="App-header">
-        <p>Name: {data.character.name}</p>
-        <p>Species: {data.character.species}</p>
-        <p>Status: {data.character.status}</p>
-        <img src={data.character.image} alt={data.character.name} />
-      </header>
-    <div></div>
-  </div>;
-};
+  return (
+    <Suspense fallback={"Loading..."}>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<CharacterList />} />
+          <Route path="/:id" element={<Character />} />
+        </Routes>
+      </div>
+    </Suspense>
+  );
+}
 
 function AppRoot() {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
       <Suspense fallback={"Loading..."}>
-        <App preloadedQuery={preloadedQuery} />
+        <App />
       </Suspense>
     </RelayEnvironmentProvider>
   );
