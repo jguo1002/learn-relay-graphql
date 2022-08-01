@@ -10,22 +10,17 @@ import type { CharacterListQuery as CharacterListQueryType } from "./__generated
 import { Link } from "react-router-dom";
 import "./CharacterList.css";
 import RelayEnvironment from "../components/RelayEnv";
-import {
-  Card,
-  CardActions,
-  CardMedia,
-  CardContent,
-  Button,
-  Typography,
-} from "@mui/material";
+import CharacterCard from "./CharacterCard";
 
 const CharacterListQuery = graphql`
   query CharacterListQuery {
     characters {
+      info {
+        count
+      }
       results {
         id
-        name
-        image
+        ...CharacterCard_card
       }
     }
   }
@@ -54,23 +49,7 @@ function CharacterList({ characterListQuery }: { characterListQuery: any }) {
         {data.characters.results.map((character: any, index: any) => {
           return (
             <Link to={`${character.id}`} key={index}>
-              <Card sx={{ minWidth: 200 }}>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={character.image}
-                  alt={character.name}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h6" component="div">
-                    {character.name}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                  ></Typography>
-                </CardContent>
-              </Card>
+              <CharacterCard character={character} />
             </Link>
           );
         })}
