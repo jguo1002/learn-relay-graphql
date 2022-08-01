@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { graphql } from "babel-plugin-relay/macro";
 import {
   useLazyLoadQuery,
@@ -8,7 +8,7 @@ import {
 } from "react-relay";
 import type { CharacterListQuery as CharacterListQueryType } from "./__generated__/CharacterListQuery.graphql";
 import { Link } from "react-router-dom";
-import "./CharacterList.css";
+import "./Character.css";
 import RelayEnvironment from "../components/RelayEnv";
 import CharacterCard from "./CharacterCard";
 
@@ -49,7 +49,7 @@ function CharacterList({ characterListQuery }: { characterListQuery: any }) {
         {data.characters.results.map((character: any, index: any) => {
           return (
             <Link to={`${character.id}`} key={index}>
-              <CharacterCard character={character} />
+              {character !== null && <CharacterCard character={character} />}
             </Link>
           );
         })}

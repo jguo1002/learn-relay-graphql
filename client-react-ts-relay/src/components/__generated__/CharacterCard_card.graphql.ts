@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c5e28cb3846fc0e990796f5386f56337>>
+ * @generated SignedSource<<b3964c470419603e4532f2a98bd10bdd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,7 @@ export type CharacterCard_card$data = {
   readonly name: string | null;
   readonly species: string | null;
   readonly status: string | null;
+  readonly " $fragmentSpreads": FragmentRefs<"CharacterHover_hover">;
   readonly " $fragmentType": "CharacterCard_card";
 };
 export type CharacterCard_card$key = {
@@ -71,12 +72,17 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "species",
       "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "CharacterHover_hover"
     }
   ],
   "type": "Character",
   "abstractKey": null
 };
 
-(node as any).hash = "29c7702270f7001d7e2a702fd053b5c9";
+(node as any).hash = "4bd5f33529bc7a551215f9f256c9d66a";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<16ccfe36c59c60b755cee9d3ecc3fb35>>
+ * @generated SignedSource<<a8d73ee301f6251ef45fa14f6ecc9259>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -51,6 +51,13 @@ v1 = {
   "args": null,
   "kind": "ScalarField",
   "name": "id",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
   "storageKey": null
 };
 return {
@@ -117,13 +124,7 @@ return {
             "plural": true,
             "selections": [
               (v1/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "name",
-                "storageKey": null
-              },
+              (v2/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -151,6 +152,40 @@ return {
                 "kind": "ScalarField",
                 "name": "species",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Location",
+                "kind": "LinkedField",
+                "name": "location",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "dimension",
+                    "storageKey": null
+                  },
+                  (v2/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "type",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "created",
+                    "storageKey": null
+                  },
+                  (v1/*: any*/)
+                ],
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -161,12 +196,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "0df20e314ff2979ac7507a05a8365c78",
+    "cacheID": "e9516331bd8e7398b378dc0b03463ada",
     "id": null,
     "metadata": {},
     "name": "CharacterListQuery",
     "operationKind": "query",
-    "text": "query CharacterListQuery {\n  characters {\n    info {\n      count\n    }\n    results {\n      id\n      ...CharacterCard_card\n    }\n  }\n}\n\nfragment CharacterCard_card on Character {\n  id\n  name\n  image\n  gender\n  status\n  species\n}\n"
+    "text": "query CharacterListQuery {\n  characters {\n    info {\n      count\n    }\n    results {\n      id\n      ...CharacterCard_card\n    }\n  }\n}\n\nfragment CharacterCard_card on Character {\n  id\n  name\n  image\n  gender\n  status\n  species\n  ...CharacterHover_hover\n}\n\nfragment CharacterHover_hover on Character {\n  location {\n    dimension\n    name\n    type\n    created\n    id\n  }\n}\n"
   }
 };
 })();

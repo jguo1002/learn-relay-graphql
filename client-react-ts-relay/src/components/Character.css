@@ -9,3 +9,23 @@
 .character-episode {
     margin-top: 2rem;
 }
+
+/* ------- CharacterList -------- */
+.character-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.character-list a {
+    text-decoration: none;
+}
+
+/* ------- CharacterHover -------- */
+
+.character-hover{
+    z-index: 99;
+    position:absolute;
+    background-color: red;
+}
