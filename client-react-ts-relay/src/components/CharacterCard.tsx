@@ -19,7 +19,7 @@ function CharacterCard(props: any) {
   const [pageX, setPageX] = useState<Number>(0);
   const [pageY, setPageY] = useState<Number>(0);
 
-  const character = useFragment(
+  const character = useFragment<CharacterCard_card$key>(
     graphql`
       fragment CharacterCard_card on Character {
         id
@@ -50,34 +50,34 @@ function CharacterCard(props: any) {
 
   return (
     <Suspense fallback="Loading...">
-      {character !== null && typeof character.image === "string" && (
-        <Card sx={{ minWidth: 200 }}>
-          <div
-            onMouseEnter={(e: any) => showHover(e)}
-            onMouseOut={(e: any) => hideHover(e)}
-            onMouseMove={(e: any) => setMousePosition(e)}
-          >
-            <CardMedia
-              component="img"
-              height="200"
-              image={character.image}
-              alt={character.name}
-            />
-          </div>
-          <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
-              {character.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {character.species}
-              {bull}
-              {character.gender}
-              {bull}
-              {character.status}
-            </Typography>
-          </CardContent>
-        </Card>
-      )}
+      {/* {character !== null && typeof character.image === "string" && ( */}
+      <Card sx={{ minWidth: 200 }}>
+        <div
+          onMouseEnter={(e: any) => showHover(e)}
+          onMouseOut={(e: any) => hideHover(e)}
+          onMouseMove={(e: any) => setMousePosition(e)}
+        >
+          <CardMedia
+            component="img"
+            height="200"
+            image={character?.image}
+            alt={character?.name}
+          />
+        </div>
+        <CardContent>
+          <Typography gutterBottom variant="h6" component="div">
+            {character?.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {character?.species}
+            {bull}
+            {character?.gender}
+            {bull}
+            {character?.status}
+          </Typography>
+        </CardContent>
+      </Card>
+      {/* )} */}
       {hover && (
         <CharacterHover character={character} pageX={pageX} pageY={pageY} />
       )}
