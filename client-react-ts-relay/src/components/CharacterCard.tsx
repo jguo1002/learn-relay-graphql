@@ -19,7 +19,7 @@ function CharacterCard(props: any) {
   const [pageX, setPageX] = useState<Number>(0);
   const [pageY, setPageY] = useState<Number>(0);
 
-  const character = useFragment<CharacterCard_card$key>(
+  const character = useFragment(
     graphql`
       fragment CharacterCard_card on Character {
         id
