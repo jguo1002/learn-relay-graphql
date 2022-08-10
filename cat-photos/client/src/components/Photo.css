@@ -1,0 +1,15 @@
+/* ------- PhotoWall -------- */
+.photo-wall {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.photo-wall a {
+    text-decoration: none;
+}
+
+.photo {
+    display: flex;
+}
