@@ -1,0 +1,108 @@
+/**
+ * @generated SignedSource<<c206ae60dbda69f97b3583ad7d91d06c>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
+/* tslint:disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { ConcreteRequest, Query } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
+export type PhotoWallQuery$variables = {};
+export type PhotoWallQuery$data = {
+  readonly photos: ReadonlyArray<{
+    readonly id: string | null;
+    readonly " $fragmentSpreads": FragmentRefs<"PhotoCard_card">;
+  } | null> | null;
+};
+export type PhotoWallQuery = {
+  response: PhotoWallQuery$data;
+  variables: PhotoWallQuery$variables;
+};
+
+const node: ConcreteRequest = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
+  "fragment": {
+    "argumentDefinitions": [],
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "PhotoWallQuery",
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "Photo",
+        "kind": "LinkedField",
+        "name": "photos",
+        "plural": true,
+        "selections": [
+          (v0/*: any*/),
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "PhotoCard_card"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "type": "Query",
+    "abstractKey": null
+  },
+  "kind": "Request",
+  "operation": {
+    "argumentDefinitions": [],
+    "kind": "Operation",
+    "name": "PhotoWallQuery",
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "Photo",
+        "kind": "LinkedField",
+        "name": "photos",
+        "plural": true,
+        "selections": [
+          (v0/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "text",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "image",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
+  },
+  "params": {
+    "cacheID": "7ed2d90112a8cf02fc686527e475d4b9",
+    "id": null,
+    "metadata": {},
+    "name": "PhotoWallQuery",
+    "operationKind": "query",
+    "text": "query PhotoWallQuery {\n  photos {\n    id\n    ...PhotoCard_card\n  }\n}\n\nfragment PhotoCard_card on Photo {\n  id\n  text\n  image\n}\n"
+  }
+};
+})();
+
+(node as any).hash = "38c1a85d2b580e6e80bcbe68fb007b44";
+
+export default node;

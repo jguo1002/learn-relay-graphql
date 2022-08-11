@@ -1,0 +1,16 @@
+type Photo {
+  id: String
+
+  text: String
+
+  image: String
+
+  meHasLiked: Boolean
+
+  likesCount: Int
+}
+
+type Query {
+  photo(id: ID!): Photo
+  photos(page: Int): [Photo]
+}

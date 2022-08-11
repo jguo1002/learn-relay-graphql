@@ -27,24 +27,23 @@ function PhotoCard(props: any) {
   return (
     <Suspense fallback="Loading...">
       {/* {photo !== null && typeof photo.image === "string" && ( */}
-      <Card sx={{ minWidth: 200 }}>
+      <Card sx={{ maxWidth: 200 }}>
         <CardMedia
           component="img"
           height="200"
+          width="200"
           image={photo?.image}
           alt={photo?.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {photo?.name}
+          <Typography gutterBottom variant="body2" component="div">
+            {photo?.text}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          {/* <Typography variant="body2" color="text.secondary">
             {photo?.species}
-            {bull}
             {photo?.gender}
-            {bull}
             {photo?.status}
-          </Typography>
+          </Typography> */}
         </CardContent>
       </Card>
     </Suspense>

@@ -10,14 +10,13 @@ import { Link } from "react-router-dom";
 import "./Photo.css";
 import RelayEnvironment from "./RelayEnv";
 import PhotoCard from "./PhotoCard";
+import { PhotoWallQuery as PhotoWallQueryType } from "./__generated__/PhotoWallQuery.graphql";
 
 const PhotoWallQuery = graphql`
   query PhotoWallQuery {
     photos {
-      results {
-        id
-        ...Photo_card
-      }
+      id
+      ...PhotoCard_card
     }
   }
 `;
@@ -32,6 +31,7 @@ type Props = {
 
 function PhotoWall({ photoWallQuery }: { photoWallQuery: any }) {
   const data: any = usePreloadedQuery(PhotoWallQuery, photoWallQuery);
+  console.log("data: ", data);
 
   // const data: any = useLazyLoadQuery<PhotoWallQueryType>(
   //   PhotoWallQuery,
@@ -41,12 +41,12 @@ function PhotoWall({ photoWallQuery }: { photoWallQuery: any }) {
   return (
     <div className="">
       <h1>Cahir Photos</h1>
-      <div className="photo-list">
-        {data.photos.results.map((photo: any, index: any) => {
+      <div className="photo-wall">
+        {data.photos.map((photo: any, index: any) => {
           return (
-            <Link to={`${photo.id}`} key={index}>
-              {photo !== null && <PhotoCard photo={photo} />}
-            </Link>
+            // <Link to={`${photo.id}`} key={index}>
+            <div>{photo !== null && <PhotoCard photo={photo} />}</div>
+            // </Link>
           );
         })}
       </div>
