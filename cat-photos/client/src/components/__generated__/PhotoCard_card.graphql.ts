@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<61d21902a8e58457ccb53153f5b7403b>>
+ * @generated SignedSource<<91be2f5788e41612152c37b605d75a7c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,9 +11,9 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type PhotoCard_card$data = {
-  readonly id: string | null;
-  readonly image: string | null;
-  readonly text: string | null;
+  readonly id: string;
+  readonly image: string;
+  readonly text: string;
   readonly " $fragmentType": "PhotoCard_card";
 };
 export type PhotoCard_card$key = {

@@ -1,0 +1,9 @@
+query MyQuery {
+  photos {
+    id
+    image
+    likesCount
+    meHasLiked
+    text
+  }
+}

@@ -106,3 +106,5 @@ dist
 .graphql/
 
 __pycache__/
+
+*.graphql.ts

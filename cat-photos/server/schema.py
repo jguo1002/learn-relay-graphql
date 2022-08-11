@@ -37,17 +37,19 @@ class Photo:
         return cls(id=strawberry.ID(str(d["id"])), text=d["text"], image=d["image"], meHasLiked=d["meHasLiked"], likesCount=d["likesCount"])
 
 
-async def load_photos(keys) -> List[Photo]:
-    def lookup(key: int) -> Union[Photo, ValueError]:
-        user = Photo.marshal(data.get(key))
-        if user:
-            return user
-        return ValueError("not found")
-    return [lookup(key) for key in keys]
-
-
 async def get_photos():
     return [Photo.marshal(d) for d in data]
+
+
+async def load_photos(keys) -> List[Photo]:
+    def lookup(key: int) -> Union[Photo, ValueError]:
+        for d in data:
+            if d['id'] == key:
+                user = Photo.marshal(d)
+                if user:
+                    return user
+        return ValueError("not found")
+    return [lookup(key) for key in keys]
 
 
 class GraphQL(gqla.GraphQL):
@@ -59,10 +61,6 @@ class GraphQL(gqla.GraphQL):
 
 @ strawberry.type
 class Query:
-    # @strawberry.field
-    # def photos(self, info: Info) -> JSON:
-    #     return {"results": data}
-
     photos: typing.List[Photo] = strawberry.field(resolver=get_photos)
 
     @ strawberry.field
@@ -75,3 +73,4 @@ app = GraphQL(schema)
 
 # strawberry server schema
 # uvicorn schema:app
+# strawberry codegen --schema schema --output-dir ./output -p python -p typescript _query.graphql

@@ -1,16 +1,19 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
 type Photo {
-  id: String
-
-  text: String
-
-  image: String
-
-  meHasLiked: Boolean
-
-  likesCount: Int
+  id: String!
+  text: String!
+  image: String!
+  meHasLiked: Boolean!
+  likesCount: Int!
 }
 
 type Query {
-  photo(id: ID!): Photo
-  photos(page: Int): [Photo]
+  photos: [Photo!]!
+  photo(id: ID!): Photo!
 }
+

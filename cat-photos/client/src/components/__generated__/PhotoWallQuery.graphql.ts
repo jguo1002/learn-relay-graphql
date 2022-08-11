@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c206ae60dbda69f97b3583ad7d91d06c>>
+ * @generated SignedSource<<74db8ba6f114f2c7b31532e150783ca8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,9 +13,9 @@ import { FragmentRefs } from "relay-runtime";
 export type PhotoWallQuery$variables = {};
 export type PhotoWallQuery$data = {
   readonly photos: ReadonlyArray<{
-    readonly id: string | null;
+    readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"PhotoCard_card">;
-  } | null> | null;
+  }>;
 };
 export type PhotoWallQuery = {
   response: PhotoWallQuery$data;

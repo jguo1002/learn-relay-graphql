@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b5f7caf970860d805e78bf4bc6a0744d>>
+ * @generated SignedSource<<1b0ce81240677089d58eabd3d855624c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,10 +14,10 @@ export type PhotoQuery$variables = {
 };
 export type PhotoQuery$data = {
   readonly photo: {
-    readonly id: string | null;
-    readonly image: string | null;
-    readonly text: string | null;
-  } | null;
+    readonly id: string;
+    readonly image: string;
+    readonly text: string;
+  };
 };
 export type PhotoQuery = {
   response: PhotoQuery$data;

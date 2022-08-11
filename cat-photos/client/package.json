@@ -26,6 +26,7 @@
     "start": "yarn run relay && react-scripts start",
     "build": "yarn run relay && react-scripts build",
     "relay": "yarn run relay-compiler",
+    "get-schema": "npx get-graphql-schema http://127.0.0.1:8000/ > schema.graphql",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "get-graphql-schema": "get-graphql-schema https://rickandmortyapi.com/graphql > schema.graphql --graphql"
