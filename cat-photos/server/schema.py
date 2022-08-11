@@ -20,7 +20,7 @@ JSON = strawberry.scalar(
 )
 
 image_path = "images/"
-with open("../data/photos_dict.json", "r") as f:
+with open("../data/photos.json", "r") as f:
     data = json.load(f)
 
 
@@ -47,7 +47,7 @@ async def load_photos(keys) -> List[Photo]:
 
 
 async def get_photos():
-    return [Photo.marshal(v) for d, v in data.items()]
+    return [Photo.marshal(d) for d in data]
 
 
 class GraphQL(gqla.GraphQL):
