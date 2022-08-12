@@ -1,5 +1,5 @@
 {
-  "name": "client-ts",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,7 +23,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "yarn run relay && react-scripts start",
+    "start": "yarn run relay && PORT=3006 react-scripts start",
     "build": "yarn run relay && react-scripts build",
     "relay": "yarn run relay-compiler",
     "get-schema": "npx get-graphql-schema http://127.0.0.1:8000/ > schema.graphql",
