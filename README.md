@@ -20,6 +20,13 @@
 
 [SpaceX-pxxbxen@current](https://studio.apollographql.com/public/SpaceX-pxxbxen/home?variant=current)
 
+## CodeGen 
+
+```
+npx get-graphql-schema http://127.0.0.1:8000/ > schema.graphql
+```
+
+
 
 ## Example 
 

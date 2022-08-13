@@ -1,5 +1,15 @@
-import React, { useState, Suspense } from "react";
-import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
+import React, { useState, useCallback, Suspense } from "react";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  IconButton,
+  Box,
+} from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { graphql } from "babel-plugin-relay/macro";
 import { useFragment } from "react-relay";
 
@@ -24,6 +34,12 @@ function PhotoCard(props: any) {
     props.photo
   );
 
+  const Icon = photo.meHasLiked ? FavoriteIcon : FavoriteBorderIcon;
+
+  const handleLike = useCallback(() => {
+    console.log("clicked!");
+  }, [photo]);
+
   return (
     <Suspense fallback="Loading...">
       {/* {photo !== null && typeof photo.image === "string" && ( */}
@@ -45,6 +61,16 @@ function PhotoCard(props: any) {
             {photo?.status}
           </Typography> */}
         </CardContent>
+        <CardActions>
+          <IconButton onClick={handleLike}>
+            <Icon
+            // style={{ color: theme.relayDark }}
+            />
+          </IconButton>
+          {photo.likesCount > 0 ? (
+            <Typography>{photo.likesCount}</Typography>
+          ) : null}
+        </CardActions>
       </Card>
     </Suspense>
   );

@@ -45,7 +45,9 @@ function PhotoWall({ photoWallQuery }: { photoWallQuery: any }) {
         {data.photos.map((photo: any, index: any) => {
           return (
             // <Link to={`${photo.id}`} key={index}>
-            <div>{photo !== null && <PhotoCard photo={photo} />}</div>
+            <div key={index}>
+              {photo !== null && <PhotoCard photo={photo} />}
+            </div>
             // </Link>
           );
         })}
