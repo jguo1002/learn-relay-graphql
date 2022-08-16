@@ -13,17 +13,11 @@ import json
 import pymongo
 
 client = pymongo.MongoClient(
-            host="localhost",
-            port=27015,
-            tz_aware=True
-            )
-
-# JSON = strawberry.scalar(
-#     NewType("JSON", object),
-#     description="The `JSON` scalar type represents JSON values as specified by ECMA-404",
-#     serialize=lambda v: v,
-#     parse_value=lambda v: v,
-# )
+    host="localhost",
+    port=27015,
+    tz_aware=True
+)
+collection = client['cat']['photos']
 
 # image_path = "images/"
 # with open("../data/photos.json", "r") as f:
@@ -44,7 +38,7 @@ class Photo:
 
 
 async def get_photos():
-    records = client['cat']['photos'].find({})
+    records = collection.find({})
     records = list(records)
     return [Photo.marshal(r) for r in records]
 
@@ -76,7 +70,18 @@ class Query:
     #     return await info.context["photo_loader"].load(id)
 
 
-schema = strawberry.Schema(query=Query)
+@strawberry.type
+class Mutation:
+    @strawberry.mutation
+    def like_photo(self, id: str) -> None:
+        print(f'Like a photo {id}')
+        photo = collection.find_one({"id": id})
+        likesCount = photo["likesCount"]
+        collection.update_one(
+            {'id': id}, {"$set": {"likesCount": likesCount + 1, "meHasLiked": True}}, upsert=False)
+
+
+schema = strawberry.Schema(query=Query, mutation=Mutation)
 # app = GraphQL(schema)
 
 # strawberry server schema
