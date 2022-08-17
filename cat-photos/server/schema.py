@@ -1,7 +1,6 @@
 import typing
 from typing import List, Union, Any, Optional, NewType
 import strawberry
-
 import strawberry.asgi as gqla
 import starlette.requests as strq
 import starlette.responses as strp
@@ -65,6 +64,11 @@ async def get_photos():
 class Query:
     photos: typing.List[Photo] = strawberry.field(resolver=get_photos)
 
+    @strawberry.field
+    async def photo(self, id: str) -> Photo:
+        photo = collection.find_one({"id": id})
+        return Photo.marshal(photo)
+
     # @strawberry.field
     # async def photo(self, info: Info, id: strawberry.ID) -> Photo:
     #     return await info.context["photo_loader"].load(id)
@@ -73,12 +77,24 @@ class Query:
 @strawberry.type
 class Mutation:
     @strawberry.mutation
-    def like_photo(self, id: str) -> None:
+    def like_photo(self, id: str) -> Photo:
         print(f'Like a photo {id}')
-        photo = collection.find_one({"id": id})
-        likesCount = photo["likesCount"]
+        likesCount = collection.find_one({"id": id})["likesCount"]
         collection.update_one(
-            {'id': id}, {"$set": {"likesCount": likesCount + 1, "meHasLiked": True}}, upsert=False)
+            {'id': id},
+            {"$set": {"likesCount": likesCount + 1, "meHasLiked": True}}, upsert=False)
+        photo = collection.find_one({"id": id})
+        return Photo.marshal(photo)
+
+    @strawberry.mutation
+    def unlike_photo(self, id: str) -> Photo:
+        print(f'Unlike a photo {id}')
+        likesCount = collection.find_one({"id": id})["likesCount"]
+        collection.update_one(
+            {'id': id},
+            {"$set": {"likesCount": likesCount - 1, "meHasLiked": False}}, upsert=False)
+        photo = collection.find_one({"id": id})
+        return Photo.marshal(photo)
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
