@@ -11,16 +11,17 @@ from strawberry.scalars import JSON
 import json
 import pymongo
 
+
+# image_path = "images/"
+# with open("../data/photos.json", "r") as f:
+#     data = json.load(f)
+
 client = pymongo.MongoClient(
     host="localhost",
     port=27015,
     tz_aware=True
 )
 collection = client['cat']['photos']
-
-# image_path = "images/"
-# with open("../data/photos.json", "r") as f:
-#     data = json.load(f)
 
 
 @strawberry.type
@@ -34,13 +35,6 @@ class Photo:
     @classmethod
     def marshal(cls, d) -> "Photo":
         return cls(id=strawberry.ID(str(d["id"])), text=d["text"], image=d["image"], meHasLiked=d["meHasLiked"], likesCount=d["likesCount"])
-
-
-async def get_photos():
-    records = collection.find({})
-    records = list(records)
-    return [Photo.marshal(r) for r in records]
-
 
 # async def load_photos(keys) -> List[Photo]:
 #     def lookup(key: int) -> Union[Photo, ValueError]:
@@ -62,7 +56,11 @@ async def get_photos():
 
 @strawberry.type
 class Query:
-    photos: typing.List[Photo] = strawberry.field(resolver=get_photos)
+    @strawberry.field
+    async def photos(self) -> typing.List[Photo]:
+        records = collection.find({})
+        records = list(records)
+        return [Photo.marshal(r) for r in records]
 
     @strawberry.field
     async def photo(self, id: str) -> Photo:
