@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<74db8ba6f114f2c7b31532e150783ca8>>
+ * @generated SignedSource<<901af7b62b665710a524417fbee2d698>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -86,6 +86,20 @@ return {
             "kind": "ScalarField",
             "name": "image",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "meHasLiked",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "likesCount",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -93,12 +107,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "7ed2d90112a8cf02fc686527e475d4b9",
+    "cacheID": "d256bd61ccefb98f7fc1a9599148d47c",
     "id": null,
     "metadata": {},
     "name": "PhotoWallQuery",
     "operationKind": "query",
-    "text": "query PhotoWallQuery {\n  photos {\n    id\n    ...PhotoCard_card\n  }\n}\n\nfragment PhotoCard_card on Photo {\n  id\n  text\n  image\n}\n"
+    "text": "query PhotoWallQuery {\n  photos {\n    id\n    ...PhotoCard_card\n  }\n}\n\nfragment PhotoCard_card on Photo {\n  id\n  text\n  image\n  meHasLiked\n  likesCount\n}\n"
   }
 };
 })();

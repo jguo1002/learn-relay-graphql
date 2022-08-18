@@ -29,10 +29,32 @@ function PhotoCard(props: any) {
         id
         text
         image
+        meHasLiked
+        likesCount
       }
     `,
     props.photo
   );
+
+  const photoCardLikeMutation = graphql`
+    mutation PhotoCardLikeMutation($input: String!) {
+      likePhoto(id: $input) {
+        id
+        meHasLiked
+        likesCount
+      }
+    }
+  `;
+
+  const photoCardUnlikeMutation = graphql`
+    mutation PhotoCardLikeMutation($input: String!) {
+      likePhoto(id: $input) {
+        id
+        meHasLiked
+        likesCount
+      }
+    }
+  `;
 
   const Icon = photo.meHasLiked ? FavoriteIcon : FavoriteBorderIcon;
 

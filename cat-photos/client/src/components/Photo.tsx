@@ -5,7 +5,7 @@ import "./Photo.css";
 import { useParams } from "react-router";
 
 const PhotoQuery = graphql`
-  query PhotoQuery($photoId: ID!) {
+  query PhotoQuery($photoId: String!) {
     photo(id: $photoId) {
       id
       text

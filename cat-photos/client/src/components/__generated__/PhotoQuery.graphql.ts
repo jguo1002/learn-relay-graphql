@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1b0ce81240677089d58eabd3d855624c>>
+ * @generated SignedSource<<15810aeb329b0de44f07b0f0cfa71a17>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -90,16 +90,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "e81d3a8fb41ef1a6a9a1d36e94018c11",
+    "cacheID": "932b78b6a6c9ee3ed3337145594f9b9b",
     "id": null,
     "metadata": {},
     "name": "PhotoQuery",
     "operationKind": "query",
-    "text": "query PhotoQuery(\n  $photoId: ID!\n) {\n  photo(id: $photoId) {\n    id\n    text\n    image\n  }\n}\n"
+    "text": "query PhotoQuery(\n  $photoId: String!\n) {\n  photo(id: $photoId) {\n    id\n    text\n    image\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "824d5b25bf7fec4f181768746c985917";
+(node as any).hash = "714cea14e55860de66b186a4bc45c477";
 
 export default node;
